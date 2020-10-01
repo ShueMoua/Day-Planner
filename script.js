@@ -12,11 +12,11 @@ console.log(currentHour)
 $("#currentDay").text(day + ", " + month + " " + date.getDate())
 // function for JS to wait till the page is loaded to take effect
 $(document).ready(function () {
-    let element
+    let element = ""
     for (var i = 9; i < 18; i++) {
        element += `<div id="${i}-block" class="time-block row">
-        <p class="hour">${i}</p>
-        <textarea class="user-input" id="${i}-txt" row="2" cols="100"></textarea>
+        <p class="hour text-center bg-secondary">${i}</p>
+        <textarea class="user-input" id="${i}-txt" row="2" cols="80"></textarea>
         <button id="${i}-btn" class="saveBtn">Save</button>
         </div>`;
         
@@ -32,6 +32,23 @@ $(document).ready(function () {
          console.log("Test",userdata)
          localStorage.setItem(time, userdata)
     })
+
+    for (var j = 9; j < 18; j++) {
+        var newData = localStorage.getItem(j)
+        $(`#${j}-txt`).val(newData)
+        console.log(newData)
+        if (currentHour < j) {
+           $(`#${j}-txt`).attr("class", "past");
+           
+        }
+        else if (currentHour == j) {
+                $(`#${j}-txt`).attr("class", "present");
+            }
+            else {
+                $(`#${j}-txt`).attr("class", "future")
+            }
+
+    }
     // var hours = ["9", "10", "11", "12", "13", "14", "15", "16", "17"];
 
     // hours.forEach(function (time) {
