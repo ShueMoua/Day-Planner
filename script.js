@@ -37,7 +37,7 @@ $(document).ready(function () {
         var newData = localStorage.getItem(j)
         $(`#${j}-txt`).val(newData)
         console.log(newData)
-        if (currentHour < j) {
+        if (currentHour > j) {
            $(`#${j}-txt`).attr("class", "past");
            
         }
